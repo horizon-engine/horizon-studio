@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+    --color-primary: #6B21A8;
+    --color-primary-muted: #A855F7;
+    --color-primary-dark: #4C1D95;
+
+    --color-secondary: #DB2777;
+    --color-secondary-muted: #F472B6;
+    --color-secondary-dark: #9F1239;
+
+    --color-accent: #06B6D4;
+
+    --color-background: #FFFFFF;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+    --color-surface: #F9FAFB;
+    --color-surface-elevated: #FFFFFF;
+
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverted: #F9FAFB;
+
+    --color-border-subtle: #F3F4F6;
+    --color-border-medium: #E5E7EB;
+    --color-border-strong: #D1D5DB;
+
+    --color-success: #10B981;
+    --color-success-muted: #D1FAE5;
+    --color-warning: #F59E0B;
+    --color-warning-muted: #FEF3C7;
+    --color-error: #EF4444;
+    --color-error-muted: #FEE2E2;
+    --color-info: #3B82F6;
+    --color-info-muted: #DBEAFE;
+}
+
+.dark {
+    --color-primary: #A855F7;
+    --color-primary-muted: #C084FC;
+    --color-primary-dark: #7C3AED;
+
+    --color-secondary: #EC4899;
+    --color-secondary-muted: #F472B6;
+    --color-secondary-dark: #DB2777;
+
+    --color-accent: #22D3EE;
+
+    --color-background: #0F172A;
+    --color-overlay: rgba(0, 0, 0, 0.75);
+    --color-surface: #1E293B;
+    --color-surface-elevated: #334155;
+
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #CBD5E1;
+    --color-text-muted: #94A3B8;
+    --color-text-inverted: #0F172A;
+
+    --color-border-subtle: #1E293B;
+    --color-border-medium: #334155;
+    --color-border-strong: #475569;
+
+    --color-success: #10B981;
+    --color-success-muted: #064E3B;
+    --color-warning: #F59E0B;
+    --color-warning-muted: #78350F;
+    --color-error: #EF4444;
+    --color-error-muted: #7F1D1D;
+    --color-info: #3B82F6;
+    --color-info-muted: #1E3A8A;
+}
