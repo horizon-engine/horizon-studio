@@ -40,7 +40,7 @@
 		{
 			id: 'start_node',
 			type: 'start_node',
-			position: { x: 0, y: 0 },
+			position: { x: 76, y: 62 },
 			data: { error_message: '' },
 			deletable: false
 		}
