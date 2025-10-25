@@ -34,7 +34,6 @@
 
 	export function focusSearch() {
 		const attemptFocus = () => {
-			console.log('attempting focus');
 			if (searchInput && searchInput.offsetParent !== null) {
 				searchInput.focus();
 			} else {
