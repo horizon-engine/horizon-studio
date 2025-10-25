@@ -72,7 +72,11 @@
 		}
 	]}
 >
-	<select class="rounded-xs py-0.5 pr-8 pl-2" value={variable?.name || ''} onchange={handleChange}>
+	<select
+		class="rounded-xs bg-surface py-0.5 pr-8 pl-2"
+		value={variable?.name || ''}
+		onchange={handleChange}
+	>
 		<option value="">Select a variable</option>
 		{#each variables as variable}
 			<option value={variable.name}>{variable.name}</option>
