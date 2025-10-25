@@ -51,176 +51,71 @@
 	interface NodeBlueprint {
 		type: string;
 		data: {
-			error_message: string;
-			enabled: boolean;
 			[key: string]: any;
 		};
 	}
 
-	const nodes: NodeBlueprint[] = $derived([
-		{
-			type: 'value_node',
-			data: {
-				error_message: '',
-				enabled: false,
-				type: 'int'
-			}
-		},
-		{
-			type: 'set_variable_node',
-			data: {
-				error_message: '',
-				enabled: false,
-				variables
-			}
-		},
-		{
-			type: 'if_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'while_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'not_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'add_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'subtract_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'multiply_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'divide_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'modulo_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'equality_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'inequality_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'and_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'or_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'less_than_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'less_than_or_equal_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'greater_than_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'greater_than_or_equal_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'group_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		},
-		{
-			type: 'postit_node',
-			data: {
-				error_message: '',
-				enabled: false
-			}
-		}
-	]);
+	function get_node_builder(type: string): () => NodeBlueprint {
+		return () => {
+			return {
+				type,
+				data: {
+					...(type !== 'postit_node' &&
+						type !== 'group_node' && {
+							error_message: '',
+							enabled: false
+						}),
+					...(type === 'set_variable_node' && { variables }),
+					...(type === 'value_node' && { type: 'int' })
+				}
+			};
+		};
+	}
+
+	const nodes: string[] = [
+		'value_node',
+		'set_variable_node',
+		'if_node',
+		'while_node',
+		'not_node',
+		'add_node',
+		'subtract_node',
+		'multiply_node',
+		'divide_node',
+		'modulo_node',
+		'equality_node',
+		'inequality_node',
+		'and_node',
+		'or_node',
+		'less_than_node',
+		'less_than_or_equal_node',
+		'greater_than_node',
+		'greater_than_or_equal_node',
+		'group_node',
+		'postit_node'
+	];
 
 	let nodes_to_filter = $derived(
 		nodes
 			.map((node) => ({
-				node,
-				title: getNodeTitle(node.type),
-				description: getNodeShortDescription(node.type),
-				search_terms: getNodeSearchTerms(node.type),
-				type: node.type
+				node_builder: get_node_builder(node),
+				title: getNodeTitle(node),
+				description: getNodeShortDescription(node),
+				search_terms: getNodeSearchTerms(node),
+				type: node
 			}))
 			.concat(
 				include_variables
 					? variables.map((variable: Variable) => ({
-							node: {
-								type: 'variable_node',
-								data: {
-									enabled: false,
-									error_message: '',
-									variable: { type: getTypeDisplay(variable.type), name: variable.name }
-								}
+							node_builder: () => {
+								return {
+									type: 'variable_node',
+									data: {
+										enabled: false,
+										error_message: '',
+										variable: { type: getTypeDisplay(variable.type), name: variable.name }
+									}
+								};
 							},
 							title: variable.name,
 							description: getTypeDisplay(variable.type),
@@ -264,7 +159,7 @@
 				? { x: rect.x - rect.width * 0.25, y: rect.y }
 				: { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 		addNode({
-			...structuredClone(node),
+			...node,
 			id: nanoid(),
 			position: screenToFlowPosition(position)
 		});
@@ -280,7 +175,7 @@
 			showClearButton={true}
 			onkeydown={(event: KeyboardEvent) => {
 				if (event.key === 'Enter' && filteredNodes.length > 0) {
-					addNodeToFlow(event, filteredNodes[0].node);
+					addNodeToFlow(event, filteredNodes[0].node_builder());
 				}
 			}}
 		/>
@@ -307,12 +202,12 @@
 						setTimeout(() => {
 							document.body.removeChild(dragImage);
 						}, 0);
-						onDragStart(event, JSON.stringify(node.node));
+						onDragStart(event, JSON.stringify(node.node_builder()));
 					}}
-					onclick={(event: MouseEvent) => addNodeToFlow(event, node.node)}
+					onclick={(event: MouseEvent) => addNodeToFlow(event, node.node_builder())}
 					onkeydown={(event: KeyboardEvent) => {
 						if (event.key === 'Enter') {
-							addNodeToFlow(event, node.node);
+							addNodeToFlow(event, node.node_builder());
 						}
 					}}
 					draggable={mode === 'drag-and-drop'}
