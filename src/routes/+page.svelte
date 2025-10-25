@@ -452,7 +452,7 @@
 				<BaselineDelete />
 			</ControlButton>
 		</Controls>
-		<Background />
+		<Background bgColor="transparent" />
 	</SvelteFlow>
 
 	<div class="absolute top-0 right-0 m-8 flex gap-2">
