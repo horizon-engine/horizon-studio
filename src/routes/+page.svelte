@@ -29,11 +29,14 @@
 	import { enableAttachedNodes, getNodeGlobalPosition, sortNodes } from '$lib/node_utils';
 	import { autoLayoutNodes } from '$lib/auto_layout';
 	import { mode, toggleMode } from 'mode-watcher';
+	import { backIn, linear } from 'svelte/easing';
 	const { screenToFlowPosition, deleteElements, fitView } = useSvelteFlow();
 	const updateNodeInternals = useUpdateNodeInternals();
 
 	let showPanel = $state(false);
 	let panelPosition = $state({ x: 0, y: 0 });
+	let showVariablePanel = $state(false);
+	let variablePanelPosition = $state({ x: 0, y: 0 });
 	let variables = $state<Variable[]>([]);
 
 	let nodes = $state.raw<Node[]>([
@@ -65,9 +68,10 @@
 			};
 		}
 		function handleKeyDown(event: KeyboardEvent) {
-			if (showPanel) {
+			if (showPanel || showVariablePanel) {
 				if (event.key === 'Escape') {
 					showPanel = false;
+					showVariablePanel = false;
 				}
 				return;
 			}
@@ -389,7 +393,7 @@
 </script>
 
 <div class="flex h-screen w-screen flex-row bg-background">
-	<div
+	<!-- <div
 		class="flex w-1/5 shrink-0 flex-col gap-4 border-r-2 border-border-strong bg-linear-to-br from-background via-primary/5 to-secondary/10 p-4"
 	>
 		<VariableManager {variables} {onAddVariable} {confirmDeleteVariable} {onReorderVariables} />
@@ -400,19 +404,19 @@
 				updateNodesHierarchy();
 			}}
 		/>
-	</div>
+	</div> -->
 
 	<SvelteFlow
 		colorMode={mode.current}
 		class="h-full w-full"
 		style="
-		    background: linear-gradient(
-				to bottom right,
-				var(--color-background),
-				color-mix(in oklab, var(--color-background) 90%, var(--color-secondary)),
-				color-mix(in oklab, var(--color-background) 90%, var(--color-primary))
-			);
-		"
+		     background: linear-gradient(
+		 		to bottom right,
+		 		var(--color-background),
+		 		color-mix(in oklab, var(--color-background) 90%, var(--color-secondary)),
+		 		color-mix(in oklab, var(--color-background) 90%, var(--color-primary))
+		 	);
+		 "
 		bind:nodes
 		bind:edges
 		{nodeTypes}
@@ -454,7 +458,41 @@
 		</Controls>
 		<Background bgColor="transparent" />
 	</SvelteFlow>
+	<div class="absolute top-0 left-0 m-8 flex flex-row gap-2">
+		<!-- button add node -->
+		<button
+			class="cursor-pointer rounded-xl border border-r-2 border-border-strong bg-linear-to-br p-4"
+			onclick={() => {
+				panelPosition = {
+					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 200)),
+					y: Math.min(window.innerHeight - 280, Math.max(160, 200))
+				};
+				nodes = nodes.map((node) => ({ ...node, selected: false }));
+				showPanel = true;
+				nodeLibrary.updateSearch('');
 
+				nodeLibrary.focusSearch();
+			}}
+			title="Add Node (Shortcut: Any key)"
+		>
+			Add Node
+		</button>
+		<!-- button add variable -->
+		<button
+			class="cursor-pointer rounded-xl border border-r-2 border-border-strong bg-linear-to-br p-4"
+			onclick={() => {
+				variablePanelPosition = {
+					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 220)),
+					y: Math.min(window.innerHeight - 280, Math.max(160, 200))
+				};
+				showPanel = false;
+				showVariablePanel = true;
+			}}
+			title="Add Variable"
+		>
+			Add Variable
+		</button>
+	</div>
 	<div class="absolute top-0 right-0 m-8 flex gap-2">
 		<button
 			class="cursor-pointer rounded-xl border border-border-subtle bg-background p-3 shadow-md transition-colors hover:border-border-medium"
@@ -510,4 +548,13 @@
 			updateNodesHierarchy();
 		}}
 	/>
+</FloatingPanel>
+
+<FloatingPanel
+	id="floating-variable-manager"
+	title="Variables"
+	bind:open={showVariablePanel}
+	position={variablePanelPosition}
+>
+	<VariableManager {variables} {onAddVariable} {confirmDeleteVariable} {onReorderVariables} />
 </FloatingPanel>

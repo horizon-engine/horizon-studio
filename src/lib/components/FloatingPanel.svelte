@@ -17,8 +17,8 @@
 
 	const service = useMachine(floatingPanel.machine, {
 		id,
-		resizable: false,
-		defaultSize: { width: 250, height: 400 },
+		resizable: true,
+		defaultSize: { width: 450, height: 450 },
 		getAnchorPosition() {
 			return {
 				x: position.x - 125,
@@ -28,6 +28,7 @@
 	});
 
 	const api = $derived(floatingPanel.connect(service, normalizeProps));
+	const contentProps = $derived(api.getContentProps());
 
 	$effect(() => {
 		api.setOpen(open);
@@ -36,8 +37,9 @@
 
 <div {...api.getPositionerProps()} {...restProps}>
 	<div
-		{...api.getContentProps()}
+		{...contentProps}
 		class="flex flex-col overflow-hidden rounded-lg border border-border-medium bg-background shadow-2xl"
+		style={`${contentProps.style ?? ''}; resize: both; min-width: 250px; min-height: 180px; max-width: calc(100vw - 2rem); max-height: calc(100vh - 2rem);`}
 	>
 		<div
 			{...api.getDragTriggerProps()}
