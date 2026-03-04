@@ -410,12 +410,7 @@
 		colorMode={mode.current}
 		class="h-full w-full"
 		style="
-		     background: linear-gradient(
-		 		to bottom right,
-		 		var(--color-background),
-		 		color-mix(in oklab, var(--color-background) 90%, var(--color-secondary)),
-		 		color-mix(in oklab, var(--color-background) 90%, var(--color-primary))
-		 	);
+			background-color: var(--new-color-primary-bg);
 		 "
 		bind:nodes
 		bind:edges
@@ -461,7 +456,13 @@
 	<div class="absolute top-0 left-0 m-8 flex flex-row gap-2">
 		<!-- button add node -->
 		<button
-			class="cursor-pointer rounded-xl border border-r-2 border-border-strong bg-linear-to-br p-4"
+			class={`cursor-pointer rounded-xl p-4 flex flex-row items-center gap-2
+				text-[var(--new-color-text-btn)] 
+				transition-colors duration-200
+				${showPanel 
+					? "bg-[var(--new-color-btn-bg-selected)] text-[var(--new-color-text-selected)]" 
+					: "bg-[var(--new-color-btn-bg)] hover:bg-[var(--new-color-btn-hover)] hover:text-[var(--new-color-text-hover)]"}
+			`}
 			onclick={() => {
 				panelPosition = {
 					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 200)),
@@ -475,11 +476,21 @@
 			}}
 			title="Add Node (Shortcut: Any key)"
 		>
+			<!-- ajoute un svg + -->
+			 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+			  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+			</svg>
 			Add Node
 		</button>
 		<!-- button add variable -->
 		<button
-			class="cursor-pointer rounded-xl border border-r-2 border-border-strong bg-linear-to-br p-4"
+			class={`cursor-pointer rounded-xl p-4 flex flex-row items-center gap-2
+				text-[var(--new-color-text-btn)] 
+				transition-colors duration-200
+				${showVariablePanel 
+					? "bg-[var(--new-color-btn-bg-selected)] text-[var(--new-color-text-selected)]" 
+					: "bg-[var(--new-color-btn-bg)] hover:bg-[var(--new-color-btn-hover)] hover:text-[var(--new-color-text-hover)]"}
+			`}
 			onclick={() => {
 				variablePanelPosition = {
 					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 220)),
@@ -490,6 +501,10 @@
 			}}
 			title="Add Variable"
 		>
+			<!-- ajoute un svg + -->
+			 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+			  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+			</svg>
 			Add Variable
 		</button>
 	</div>

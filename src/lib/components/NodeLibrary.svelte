@@ -8,6 +8,12 @@
 	import { getNodeSearchTerms, getNodeShortDescription, getNodeTitle } from '$lib/node_metadata';
 	import { getTypeDisplay } from '$lib/type_utils';
 
+	interface NodeDefinition {
+		type: string;
+		color: string;
+		icon?: string;
+	}
+
 	let {
 		variables,
 		mode = 'drag-and-drop',
@@ -71,37 +77,39 @@
 		};
 	}
 
-	const nodes: string[] = [
-		'value_node',
-		'set_variable_node',
-		'if_node',
-		'while_node',
-		'not_node',
-		'add_node',
-		'subtract_node',
-		'multiply_node',
-		'divide_node',
-		'modulo_node',
-		'equality_node',
-		'inequality_node',
-		'and_node',
-		'or_node',
-		'less_than_node',
-		'less_than_or_equal_node',
-		'greater_than_node',
-		'greater_than_or_equal_node',
-		'group_node',
-		'postit_node'
+	const nodes: NodeDefinition[] = [
+		{ type: 'value_node',                 color: '#1D3C36' },
+		{ type: 'set_variable_node',          color: '#2E4A6B' },
+		{ type: 'if_node',                    color: '#45342A' },
+		{ type: 'while_node',                 color: '#5C3317' },
+		{ type: 'not_node',                   color: '#3B1F5E' },
+		{ type: 'add_node',                   color: '#1A4A2E' },
+		{ type: 'subtract_node',              color: '#1A4A2E' },
+		{ type: 'multiply_node',              color: '#1A4A2E' },
+		{ type: 'divide_node',                color: '#1A4A2E' },
+		{ type: 'modulo_node',                color: '#1A4A2E' },
+		{ type: 'equality_node',              color: '#4A3B1A' },
+		{ type: 'inequality_node',            color: '#4A3B1A' },
+		{ type: 'and_node',                   color: '#3B1A1A' },
+		{ type: 'or_node',                    color: '#3B1A1A' },
+		{ type: 'less_than_node',             color: '#4A3B1A' },
+		{ type: 'less_than_or_equal_node',    color: '#4A3B1A' },
+		{ type: 'greater_than_node',          color: '#4A3B1A' },
+		{ type: 'greater_than_or_equal_node', color: '#4A3B1A' },
+		{ type: 'group_node',                 color: '#2A2A2A' },
+		{ type: 'postit_node',                color: '#5C5C00' }
 	];
 
 	let nodes_to_filter = $derived(
 		nodes
 			.map((node) => ({
-				node_builder: get_node_builder(node),
-				title: getNodeTitle(node),
-				description: getNodeShortDescription(node),
-				search_terms: getNodeSearchTerms(node),
-				type: node
+				node_builder: get_node_builder(node.type),
+				title: getNodeTitle(node.type),
+				description: getNodeShortDescription(node.type),
+				search_terms: getNodeSearchTerms(node.type),
+				type: node,
+				color: node.color,
+				icon: node.icon
 			}))
 			.concat(
 				include_variables
@@ -210,14 +218,19 @@
 						}
 					}}
 					draggable={mode === 'drag-and-drop'}
-					style="cursor: {mode === 'drag-and-drop' ? 'grab' : 'pointer'};"
+					style="border-color: {node.color ?? 'var(--border-medium)'}; cursor: {mode === 'drag-and-drop' ? 'grab' : 'pointer'};"
 				>
-					<div class="min-w-0 truncate text-sm font-medium text-text-primary">
-						{node.title}
-					</div>
-					<div class="min-w-0 truncate text-xs text-text-muted">
-						{node.description}
-					</div>
+					<div class="flex items-center gap-2 min-w-0 text-sm font-medium text-text-primary">
+                        <!-- {node.icon} ici plus tard -->
+                        <span
+                            class="inline-block h-2 w-2 flex-shrink-0 rounded-full"
+                            style="background-color: {node.color ?? 'var(--border-medium)'};"
+                        ></span>
+                        <span class="truncate">{node.title}</span>
+                    </div>
+                    <div class="min-w-0 truncate text-xs text-text-muted">
+                        {node.description}
+                    </div>
 				</div>
 			{:else}
 				<div class="flex h-full w-full flex-col items-center justify-center py-8 text-center">
