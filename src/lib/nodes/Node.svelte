@@ -141,9 +141,11 @@
             : ''} dragHandle relative flex h-8 flex-col justify-center border-b border-border-strong bg-surface/50 px-8 backdrop-blur-md [.is-selected]:bg-primary-muted/10"
         style={color ? `background-color: ${color};` : ''}
     >
-        <div class="flex items-center justify-center gap-2">
+        <div class="flex items-center justify-start gap-2">
             {#if icon}
-                {@render icon()}
+                <div class="[&>svg]:w-full [&>svg]:h-full flex h-4 w-4 flex-shrink-0 items-center justify-center">
+                    {@render icon()}
+                </div>
             {/if}
             <span style={text_color ? `color: ${text_color};` : ''}>{title}</span>
         </div>

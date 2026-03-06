@@ -9,12 +9,23 @@
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+<!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/></svg> -->
+
+{#snippet subtract_icon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="color: #F472B6">
+		 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
+	</svg>
+{/snippet}
+
 <Node
 	{id}
 	title={getNodeTitle('subtract_node')}
+	color="#3F1F2A"
+	text_color="#F472B6"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={subtract_icon}
 	handles={[
 		{
 			id: 'subtract_node_target_1',

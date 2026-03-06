@@ -9,12 +9,23 @@
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+<!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 5L5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></g></svg> -->
+
+{#snippet modulo_icon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: #94A3B8">
+		<path d="M19 5L5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></g>
+	</svg>
+{/snippet}
+
 <Node
 	{id}
 	title={getNodeTitle('modulo_node')}
+	color="#2A3442"
+	text_color="#94A3B8"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={modulo_icon}
 	handles={[
 		{
 			id: 'modulo_node_target_1',

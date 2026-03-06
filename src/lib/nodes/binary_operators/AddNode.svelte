@@ -10,12 +10,22 @@
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+{#snippet add_icon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="color: #C084FC">
+		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7v14"/>
+	</svg>
+{/snippet}
+
+
 <Node
 	{id}
 	title={getNodeTitle('add_node')}
+	color="#2E1F47"
+	text_color="#C084FC"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={add_icon}
 	handles={[
 		{
 			id: 'add_node_target_1',
