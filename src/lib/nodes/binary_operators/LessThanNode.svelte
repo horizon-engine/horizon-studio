@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { type NodeProps } from '@xyflow/svelte';
 	import Node from '../Node.svelte';
+	import NodeDescription from '../NodeDescription.svelte';
 	import { coerce_types } from '$lib/type_utils';
-	import { getNodeShortDescription, getNodeTitle } from '$lib/node_metadata';
+	import { getNodeTitle } from '$lib/node_metadata';
 
 	let { id, selected, data }: NodeProps = $props();
 	let enabled: boolean = $derived(data.enabled as boolean);
@@ -51,11 +52,5 @@
 		}
 	]}
 >
-	<div class="my-1 space-y-3">
-		<div class="flex flex-col justify-between space-y-3">
-			<div class="flex-1 text-right">
-				<div class="text-xs text-text-muted">{getNodeShortDescription('less_than_node')}</div>
-			</div>
-		</div>
-	</div>
+	<NodeDescription nodeType='less_than_node' />
 </Node>

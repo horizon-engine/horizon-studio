@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { type NodeProps } from '@xyflow/svelte';
 	import Node from '../Node.svelte';
-	import { getNodeShortDescription, getNodeTitle } from '$lib/node_metadata';
+	import NodeDescription from '../NodeDescription.svelte';
+	import { getNodeTitle } from '$lib/node_metadata';
 
 	let { id, selected, data }: NodeProps = $props();
 	let enabled: boolean = $derived(data.enabled as boolean);
@@ -43,11 +44,5 @@
 		}
 	]}
 >
-	<div class="my-1 space-y-3">
-		<div class="flex flex-col justify-between space-y-3">
-			<div class="flex-1 text-right">
-				<div class="text-xs text-text-muted">{getNodeShortDescription('and_node')}</div>
-			</div>
-		</div>
-	</div>
+	<NodeDescription nodeType='and_node' />
 </Node>

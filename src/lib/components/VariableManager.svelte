@@ -6,6 +6,7 @@
 	import { getTypeDisplay } from '$lib/type_utils';
 	import { useDnD } from '$lib/providers/DnDProvider.svelte';
 	import Panel from './Panel.svelte';
+	import Button from './Button.svelte';
 	import Trash2 from 'virtual:icons/lucide/trash2';
 
 	const type = useDnD();
@@ -182,14 +183,14 @@
 						<TypeSelector bind:type={newVarType} indent={false} />
 					</div>
 				</div>
-				<button
+				<Button
 					onclick={addVariable}
 					onkeydown={handleKeydown}
 					disabled={!newVarName.trim()}
-					class="w-full rounded-md bg-linear-to-r from-primary-muted to-secondary-muted py-2 text-sm font-medium text-text-inverted shadow-sm transition-all hover:from-primary-dark hover:to-secondary-dark hover:shadow disabled:cursor-not-allowed disabled:from-border-medium disabled:to-border-strong disabled:text-text-muted disabled:shadow-none"
+					class="w-full justify-center !rounded-md bg-linear-to-r from-primary-muted to-secondary-muted !py-2 text-sm font-medium text-text-inverted shadow-sm transition-all hover:from-primary-dark hover:to-secondary-dark hover:shadow disabled:cursor-not-allowed disabled:from-border-medium disabled:to-border-strong disabled:text-text-muted disabled:shadow-none"
 				>
 					<span class="flex items-center justify-center gap-2"> Add Variable </span>
-				</button>
+				</Button>
 			</div>
 		</div>
 	</div>

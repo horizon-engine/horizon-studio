@@ -23,6 +23,7 @@
 	import { compile } from '$lib/compile';
 	import FloatingPanel from '$lib/components/FloatingPanel.svelte';
 	import NodePanel from '$lib/components/NodePanel.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import { nodeTypes } from '$lib/node_types';
 	import Workflow from 'virtual:icons/lucide/workflow';
 	import BaselineDelete from 'virtual:icons/ic/baseline-delete';
@@ -430,7 +431,7 @@
 		{ondelete}
 	>
 		<MiniMap />
-		<Controls
+		<!-- <Controls
 			class="bg-accent"
 			fitViewOptions={{
 				padding: 0.2,
@@ -450,19 +451,14 @@
 			>
 				<BaselineDelete />
 			</ControlButton>
-		</Controls>
+		</Controls> -->
 		<Background bgColor="transparent" />
 	</SvelteFlow>
 	<div class="absolute top-0 left-0 m-8 flex flex-row gap-2">
 		<!-- button add node -->
-		<button
-			class={`cursor-pointer rounded-xl p-4 flex flex-row items-center gap-2
-				text-[var(--new-color-text-btn)] 
-				transition-colors duration-200
-				${showPanel 
-					? "bg-[var(--new-color-btn-bg-selected)] text-[var(--new-color-text-selected)]" 
-					: "bg-[var(--new-color-btn-bg)] hover:bg-[var(--new-color-btn-hover)] hover:text-[var(--new-color-text-hover)]"}
-			`}
+		<Button
+			variant="menu"
+			selected={showPanel}
 			onclick={() => {
 				panelPosition = {
 					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 200)),
@@ -481,16 +477,11 @@
 			  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 			</svg>
 			Add Node
-		</button>
+		</Button>
 		<!-- button add variable -->
-		<button
-			class={`cursor-pointer rounded-xl p-4 flex flex-row items-center gap-2
-				text-[var(--new-color-text-btn)] 
-				transition-colors duration-200
-				${showVariablePanel 
-					? "bg-[var(--new-color-btn-bg-selected)] text-[var(--new-color-text-selected)]" 
-					: "bg-[var(--new-color-btn-bg)] hover:bg-[var(--new-color-btn-hover)] hover:text-[var(--new-color-text-hover)]"}
-			`}
+		<Button
+			variant="menu"
+			selected={showVariablePanel}
 			onclick={() => {
 				variablePanelPosition = {
 					x: Math.min(window.innerWidth - 150, Math.max(window.innerWidth * 0.25 + 50, 220)),
@@ -506,18 +497,18 @@
 			  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 			</svg>
 			Add Variable
-		</button>
+		</Button>
 	</div>
 	<div class="absolute top-0 right-0 m-8 flex gap-2">
-		<button
-			class="cursor-pointer rounded-xl border border-border-subtle bg-background p-3 shadow-md transition-colors hover:border-border-medium"
+		<Button
+			variant="icon"
 			onclick={toggleMode}
 			title={mode.current === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
 		>
 			{mode.current === 'dark' ? '☀️' : '🌙'}
-		</button>
-		<button
-			class="cursor-pointer rounded-xl border border-border-subtle bg-background p-3 text-text-primary shadow-md transition-colors hover:border-border-medium"
+		</Button>
+		<Button
+			variant="icon"
 			onclick={() => {
 				try {
 					alert(JSON.stringify(compile(variables, nodes, edges)));
@@ -543,7 +534,7 @@
 			}}
 		>
 			compile to JSON
-		</button>
+		</Button>
 	</div>
 </div>
 <FloatingPanel
