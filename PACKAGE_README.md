@@ -320,6 +320,36 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 For issues, questions, or suggestions, please open an issue on GitHub.
 
+## Troubleshooting: "Could not resolve \"virtual:icons/...\""
+
+If you see errors like `Could not resolve "virtual:icons/lucide/x"` when installing this package into another SvelteKit/Vite project, your consumer project needs the `unplugin-icons` Vite plugin configured to resolve `virtual:icons/*` imports.
+
+Quick fix in the consuming project:
+
+1. Install the plugin:
+
+```bash
+pnpm add -D unplugin-icons
+```
+
+2. Add the plugin to your `vite.config.ts` (or `vite.config.js`):
+
+```ts
+import Icons from 'unplugin-icons/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+
+export default defineConfig({
+  plugins: [
+    sveltekit(),
+    Icons({ compiler: 'svelte' })
+  ]
+});
+```
+
+3. Restart the dev server.
+
+Alternative: if you prefer not to add `unplugin-icons` at the consuming side, I can replace `virtual:icons/*` imports in the library with inline Svelte SVG components so the package has no build-time Vite plugin requirement — tell me if you'd like that change.
+
 ## Example: Using the `Editor` component
 
 Install from GitHub (quick):
