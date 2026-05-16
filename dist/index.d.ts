@@ -9,6 +9,7 @@ export { default as Panel } from './components/Panel.svelte';
 export { default as TextInput } from './components/TextInput.svelte';
 export { default as TypeSelector } from './components/TypeSelector.svelte';
 export { default as VariableManager } from './components/VariableManager.svelte';
+export { default as Editor } from './components/Editor.svelte';
 export { default as Handle } from './handles/Handle.svelte';
 export { default as DnDProvider } from './providers/DnDProvider.svelte';
 export * from './types';

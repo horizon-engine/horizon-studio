@@ -319,3 +319,27 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Support
 
 For issues, questions, or suggestions, please open an issue on GitHub.
+
+## Example: Using the `Editor` component
+
+Install from GitHub (quick):
+
+```bash
+pnpm add github:your-username/horizon-studio
+# or
+npm install github:your-username/horizon-studio
+```
+
+Import and render the `Editor` component in your SvelteKit app:
+
+```svelte
+<script>
+  // default or named import both work depending on packaging
+  import Editor from '@horizonstudio/editor';
+  // or: import { Editor } from '@horizonstudio/editor';
+</script>
+
+<Editor />
+```
+
+If you want `Editor` to accept props (initial nodes, callbacks), I can add a small props API — tell me what you need.
