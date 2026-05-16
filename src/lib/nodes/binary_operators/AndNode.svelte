@@ -1,19 +1,29 @@
 <script lang="ts">
 	import { type NodeProps } from '@xyflow/svelte';
 	import Node from '../Node.svelte';
-	import { getNodeShortDescription, getNodeTitle } from '$lib/node_metadata';
+	import NodeDescription from '../NodeDescription.svelte';
+	import { getNodeTitle } from '$lib/node_metadata';
 
 	let { id, selected, data }: NodeProps = $props();
 	let enabled: boolean = $derived(data.enabled as boolean);
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+{#snippet and_icon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12h3m-1.5 0a8 8 0 0 1-8 8A4.5 4.5 0 0 1 5 15.5c0-6 8-4 8-8.5a3 3 0 1 0-6 0c0 3 2.5 8.5 12 13"/>
+	</svg>
+{/snippet}
+
 <Node
 	{id}
 	title={getNodeTitle('and_node')}
+	color="#2A2A2A"
+	text_color="#F5F5F5"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={and_icon}
 	handles={[
 		{
 			id: 'and_node_target_1',
@@ -34,11 +44,5 @@
 		}
 	]}
 >
-	<div class="my-1 space-y-3">
-		<div class="flex flex-col justify-between space-y-3">
-			<div class="flex-1 text-right">
-				<div class="text-xs text-text-muted">{getNodeShortDescription('and_node')}</div>
-			</div>
-		</div>
-	</div>
+	<NodeDescription nodeType='and_node' />
 </Node>

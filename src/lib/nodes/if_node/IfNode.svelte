@@ -8,12 +8,22 @@
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+<!-- snipper icon -->
+ {#snippet if_icon()}
+ <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: #FBBF24">
+	<path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+</svg>
+{/snippet}
+
 <Node
 	{id}
 	title={getNodeTitle('if_node')}
+	color="#45342A"
+	text_color="#FBBF24"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={if_icon}
 	handles={[
 		{
 			id: 'if_node_target_1',

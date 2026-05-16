@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { alertStore, type AlertOptions } from '$lib/stores/alertStore.svelte';
+	import Button from './Button.svelte';
 
 	let dialog = $derived<AlertOptions | null>(alertStore.current);
 
@@ -28,18 +29,12 @@
 				</p>
 			{/if}
 			<div class="flex justify-end gap-3">
-				<button
-					onclick={handleCancel}
-					class="rounded bg-surface px-4 py-2 text-text-primary transition-colors hover:bg-border-strong"
-				>
+				<Button variant="secondary" onclick={handleCancel}>
 					{dialog.cancelText || 'Cancel'}
-				</button>
-				<button
-					onclick={handleContinue}
-					class="rounded bg-primary px-4 py-2 text-text-inverted transition-colors hover:bg-primary-dark"
-				>
+				</Button>
+				<Button variant="primary" onclick={handleContinue}>
 					{dialog.continueText || 'Continue'}
-				</button>
+				</Button>
 			</div>
 		</div>
 	</div>

@@ -1,20 +1,31 @@
 <script lang="ts">
 	import { type NodeProps } from '@xyflow/svelte';
 	import Node from '../Node.svelte';
+	import NodeDescription from '../NodeDescription.svelte';
 	import { coerce_types } from '$lib/type_utils';
-	import { getNodeShortDescription, getNodeTitle } from '$lib/node_metadata';
+	import { getNodeTitle } from '$lib/node_metadata';
 
 	let { id, selected, data }: NodeProps = $props();
 	let enabled: boolean = $derived(data.enabled as boolean);
 	let error_message: string = $derived(data.error_message as string);
 </script>
 
+
+{#snippet multiply_icon()}
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="color: #FB923C">
+		<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/>
+	</svg>
+{/snippet}
+
 <Node
 	{id}
 	title={getNodeTitle('multiply_node')}
+	color="#3A2A1E"
+	text_color="#FB923C"
 	{enabled}
 	{error_message}
 	{selected}
+	icon={multiply_icon}
 	handles={[
 		{
 			id: 'multiply_node_target_1',
@@ -71,11 +82,5 @@
 		}
 	]}
 >
-	<div class="my-1 space-y-3">
-		<div class="flex flex-col justify-between space-y-3">
-			<div class="flex-1 text-right">
-				<div class="text-xs text-text-muted">{getNodeShortDescription('multiply_node')}</div>
-			</div>
-		</div>
-	</div>
+	<NodeDescription nodeType='multiply_node' />
 </Node>

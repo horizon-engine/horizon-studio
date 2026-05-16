@@ -35,6 +35,19 @@
     --color-error-muted: #FEE2E2;
     --color-info: #3B82F6;
     --color-info-muted: #DBEAFE;
+
+    --new-color-node-bg: #e2e8f0;
+    --new-color-primary-bg: #f0f4f8;
+
+    --new-color-primary: #e2e8f0;
+    --new-color-primary-dark: #cbd5e1;
+
+    --new-color-btn-bg-selected: rgba(59, 130, 246, 0.15);
+    --new-color-btn-hover: rgba(0, 0, 0, 0.05);
+    --new-color-text-btn: #2563eb;
+    --new-color-text-selected: #2563eb;
+    --new-color-text-hover: #1e293b;
+    --new-color-btn-bg: #dbeafe;
 }
 
 .dark {
@@ -42,26 +55,27 @@
     --color-primary-muted: #C084FC;
     --color-primary-dark: #7C3AED;
 
+    
     --color-secondary: #EC4899;
     --color-secondary-muted: #F472B6;
     --color-secondary-dark: #DB2777;
-
+    
     --color-accent: #22D3EE;
-
+    
     --color-background: #0F172A;
     --color-overlay: rgba(0, 0, 0, 0.75);
     --color-surface: #1E293B;
     --color-surface-elevated: #334155;
-
+    
     --color-text-primary: #F1F5F9;
     --color-text-secondary: #CBD5E1;
     --color-text-muted: #94A3B8;
     --color-text-inverted: #0F172A;
-
+    
     --color-border-subtle: #1E293B;
     --color-border-medium: #334155;
     --color-border-strong: #475569;
-
+    
     --color-success: #10B981;
     --color-success-muted: #064E3B;
     --color-warning: #F59E0B;
@@ -70,4 +84,49 @@
     --color-error-muted: #7F1D1D;
     --color-info: #3B82F6;
     --color-info-muted: #1E3A8A;
+
+
+    --new-color-node-bg: #201D30;
+    --new-color-node-border: #342e53;
+    --new-color-primary-bg: #1e1c29;
+
+    --new-color-primary: #1a1a2e;
+    --new-color-primary-dark: #0D0D17;
+
+    --new-color-btn-bg-selected: rgba(59, 130, 246, 0.2);
+    --new-color-btn-hover: rgba(255, 255, 255, 0.05);
+    /* --new-color-text-btn: rgba(156, 163, 175, 1); */
+    --new-color-text-btn: #3b82f6;
+    --new-color-text-selected: #3b82f6;
+    --new-color-text-hover: rgba(229, 231, 235, 1);
+    --new-color-btn-bg: #1D2B46;
+
+    /* Horizon Theme - Couleurs Principales */
+	/* --bg-primary: #1a1a2c; Noir Profond Principal */
+	/* --bg-secondary: #2e2e44; Gris Foncé Cartes */
+	/* --bg-tertiary: #1a1a2e; Gris Foncé Background */
+	/* --bg-accent: #16213e; Bleu Foncé Accent */
+	
+	/* --border-color: rgba(255, 255, 255, 0.1); white/10 */
+	/* --border-hover: rgba(255, 255, 255, 0.2); white/20 */
+	/* --border-focus: rgba(139, 92, 246, 0.6); violet-500/60 */
+	
+	/* --text-primary: #f1f5f9; */
+	/* --text-secondary: #cbd5e1; */
+	/* --text-muted: #94a3b8; */
+	
+	/* --accent-primary: #8b5cf6; Violet Principal */
+	/* --accent-hover: #a78bfa; Violet Clair Hover */
+	/* --accent-secondary: #FE9F72; Orange Accent */
+
+	/* --button-primary: #3b82f6; */
+	
+	/* --success: #22c55e; */
+	/* --warning: #f59e0b; */
+	/* --error: #ef4444; */
+	
+	/* Ombres Horizon */
+	/* --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3); */
+	/* --shadow-strong: 0 12px 48px rgba(139, 92, 246, 0.3); */
+	/* --shadow-focus: 0 0 0 4px rgba(139, 92, 246, 0.1); */
 }

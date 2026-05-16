@@ -1,0 +1,24 @@
+export declare const nodeTypes: {
+    start_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    value_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    variable_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    if_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    while_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    not_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    add_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    subtract_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    multiply_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    divide_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    modulo_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    equality_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    inequality_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    and_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    or_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    less_than_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    less_than_or_equal_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    greater_than_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    greater_than_or_equal_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    set_variable_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    group_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+    postit_node: import("svelte").Component<import("@xyflow/svelte").NodeProps, {}, "">;
+};

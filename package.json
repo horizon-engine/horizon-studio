@@ -1,11 +1,37 @@
 {
-	"name": "horizon-editor",
-	"private": true,
+	"name": "@horizonstudio/editor",
+	"description": "A visual node-based editor interface built with SvelteKit",
 	"version": "0.0.1",
+	"license": "MIT",
+	"author": "Mateo Barbey",
 	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.d.ts.map"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/horizon-engine/horizon-studio"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"visual-editor",
+		"node-editor",
+		"graph-editor"
+	],
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "svelte-kit sync && svelte-package && publint",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -17,8 +43,8 @@
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.38.0",
 		"@iconify/json": "^2.2.398",
-		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.47.2",
+		"@sveltejs/package": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/typography": "^0.5.19",
@@ -31,6 +57,7 @@
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.6.14",
+		"publint": "^0.3.21",
 		"svelte": "^5.41.1",
 		"svelte-check": "^4.3.3",
 		"tailwindcss": "^4.1.15",
@@ -55,5 +82,17 @@
 		"mode-watcher": "^1.1.0",
 		"nanoid": "^5.1.6",
 		"svelte-5-french-toast": "^2.0.6"
+	},
+	"peerDependencies": {
+		"svelte": ">=5.0.0",
+		"@sveltejs/kit": ">=2.0.0"
+	},
+	"peerDependenciesMeta": {
+		"svelte": {
+			"optional": false
+		},
+		"@sveltejs/kit": {
+			"optional": false
+		}
 	}
 }

@@ -8,7 +8,7 @@
 	import X from 'virtual:icons/lucide/x';
 	import Info from 'virtual:icons/lucide/info';
 
-	const { id, title, enabled, error_message, selected, handles, children } = $props<{
+	const { id, title, enabled, error_message, selected, handles, children, color, text_color, icon } = $props<{
 		id: string;
 		title: string;
 		enabled: boolean;
@@ -16,6 +16,9 @@
 		selected: boolean;
 		handles: HandleBlueprint[];
 		children: Snippet;
+		color?: string;
+		text_color?: string;
+		icon?: Snippet;
 	}>();
 
 	let edges = useEdges();
@@ -130,22 +133,30 @@
 <div
 	class="{error_message === ''
 		? ''
-		: 'show-error'} overflow-hidden rounded-sm border border-border-strong text-text-primary outline-offset-2 outline-error [.show-error]:outline-2"
+		: 'show-error'} overflow-hidden rounded-lg border border-border-strong text-text-primary outline-offset-2 outline-error [.show-error]:outline-2"
 >
-	<div
-		class="{selected
-			? 'is-selected'
-			: ''} dragHandle relative flex h-8 flex-col items-center justify-center border-b border-border-strong bg-surface/50 px-8 backdrop-blur-md [.is-selected]:bg-primary-muted/10"
-	>
-		<span class="text-text-primary">{title}</span>
-		<button
-			onclick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')?.focus()}
-			class="absolute right-0.5 cursor-pointer rounded p-1 transition-colors"
-			title="Documentation"
-		>
-			<Info class="mt-0.5 h-3 w-3 text-text-secondary" />
-		</button>
-	</div>
+    <div
+        class="{selected
+            ? 'is-selected'
+            : ''} dragHandle relative flex h-8 flex-col justify-center border-b border-border-strong bg-surface/50 px-8 backdrop-blur-md [.is-selected]:bg-primary-muted/10"
+        style={color ? `background-color: ${color};` : ''}
+    >
+        <div class="flex items-center justify-start gap-2">
+            {#if icon}
+                <div class="[&>svg]:w-full [&>svg]:h-full flex h-4 w-4 flex-shrink-0 items-center justify-center">
+                    {@render icon()}
+                </div>
+            {/if}
+            <span style={text_color ? `color: ${text_color};` : ''}>{title}</span>
+        </div>
+        <button
+            onclick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')?.focus()}
+            class="absolute right-0.5 cursor-pointer rounded p-1 transition-colors"
+            title="Documentation"
+        >
+            <Info class="mt-0.5 h-3 w-3 text-text-secondary" />
+        </button>
+    </div>
 	<div class="nodrag relative h-full w-full bg-background p-2">
 		<div class="cursor-auto">
 			{@render children()}
