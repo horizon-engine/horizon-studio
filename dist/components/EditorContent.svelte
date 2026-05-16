@@ -14,9 +14,15 @@
     import { useDnD } from '../providers/DnDProvider.svelte';
     import { alertStore } from '../stores/alertStore.svelte.js';
     import NodeLibrary from './NodeLibrary.svelte';
-    import { onMount, untrack } from 'svelte';
-    import { handleValidTypes, store } from '../state.svelte';
+    import { onMount, untrack, getContext } from 'svelte';
     import { compile } from '../compile';
+
+    interface StoreContext {
+        clearErrors: boolean;
+        updateFlow: boolean;
+    }
+
+    const store = getContext<StoreContext>('editor-store');
     import FloatingPanel from './FloatingPanel.svelte';
     import Button from './Button.svelte';
     import { nodeTypes } from '../node_types';

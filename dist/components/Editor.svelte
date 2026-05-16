@@ -12,9 +12,12 @@
     import { mode } from 'mode-watcher';
     import { useDnD } from '../providers/DnDProvider.svelte';
     import { nanoid } from 'nanoid';
-    import { handleValidTypes } from '../state.svelte';
+    import { handleValidTypes, store } from '../state.svelte';
     import { getNodeGlobalPosition, sortNodes } from '../node_utils';
+    import { setContext } from 'svelte';
     import EditorContent from './EditorContent.svelte';
+
+    setContext('editor-store', store);
 
     let nodes = $state.raw<Node[]>([
         {
