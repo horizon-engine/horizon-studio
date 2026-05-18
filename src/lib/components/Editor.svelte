@@ -35,6 +35,27 @@
         $props<{ nodes?: Node[]; edges?: Edge[] }>();
 
     const dndData = useDnD();
+    let editorContent: EditorContent | null = null;
+
+    export function compileToJson() {
+        return editorContent?.compileToJson() ?? {
+            ok: false,
+            error: {
+                message: 'Editor not ready',
+                cause: null
+            }
+        };
+    }
+
+    export function loadFromJson(payload: string | unknown) {
+        return editorContent?.loadFromJson(payload) ?? {
+            ok: false,
+            error: {
+                message: 'Editor not ready',
+                cause: null
+            }
+        };
+    }
 
     function updateNodesHierarchy() {
         setTimeout(() => {
@@ -189,7 +210,7 @@
     >
         <Background bgColor="transparent" />
         <MiniMap />
-        <EditorContent bind:nodes bind:edges />
+        <EditorContent bind:this={editorContent} bind:nodes bind:edges />
     </SvelteFlow>
 </div>
 </SvelteFlowProvider>

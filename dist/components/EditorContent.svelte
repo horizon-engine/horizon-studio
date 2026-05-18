@@ -296,6 +296,114 @@
         updateNodesHierarchy();
     }
 
+    function normalizeGraphPayload(payload: unknown) {
+        if (!payload || typeof payload !== 'object') return null;
+
+        const data = payload as {
+            nodes?: Node[];
+            edges?: Edge[];
+            variables?: Variable[];
+        };
+
+        if (!Array.isArray(data.nodes) || !Array.isArray(data.edges)) return null;
+
+        return {
+            nodes: data.nodes,
+            edges: data.edges,
+            variables: Array.isArray(data.variables) ? data.variables : []
+        };
+    }
+
+    export function loadFromJson(payload: string | unknown) {
+        try {
+            const parsed = typeof payload === 'string' ? JSON.parse(payload) : payload;
+            const normalized = normalizeGraphPayload(parsed);
+            if (!normalized) {
+                return {
+                    ok: false,
+                    error: {
+                        message: 'Invalid graph payload',
+                        cause: null
+                    }
+                } as const;
+            }
+
+            const nextVariables = normalized.variables;
+            const nextNodes = normalized.nodes.length
+                ? normalized.nodes
+                : [
+                      {
+                          id: 'start_node',
+                          type: 'start_node',
+                          position: { x: 76, y: 62 },
+                          data: { error_message: '' },
+                          deletable: false
+                      } satisfies Node
+                  ];
+
+            variables = nextVariables;
+            nodes = nextNodes.map((node) => {
+                if (node.type === 'set_variable_node') {
+                    return {
+                        ...node,
+                        data: {
+                            ...node.data,
+                            variables: nextVariables
+                        }
+                    };
+                }
+                return node;
+            });
+            edges = normalized.edges;
+
+            store.clearErrors = true;
+
+            return { ok: true } as const;
+        } catch (error: any) {
+            return {
+                ok: false,
+                error: {
+                    message: error?.message ?? 'Failed to parse graph payload',
+                    cause: error?.cause ?? null
+                }
+            } as const;
+        }
+    }
+
+    export function compileToJson() {
+        try {
+            const result = compile(variables, nodes, edges);
+            store.clearErrors = true;
+            return { ok: true, data: result } as const;
+        } catch (e: any) {
+            nodes = nodes.map((node) => {
+                return {
+                    ...node,
+                    data: {
+                        ...node.data,
+                        error_message: node.id === e.cause ? e.message : ''
+                    }
+                };
+            });
+
+            fitView({
+                padding: 0.2,
+                maxZoom: 1.5,
+                duration: 100,
+                interpolate: 'smooth',
+                nodes: [nodes.find((node) => node.id === e.cause)!]
+            });
+
+            return {
+                ok: false,
+                error: {
+                    message: e?.message ?? 'Unknown compile error',
+                    cause: e?.cause ?? null
+                }
+            } as const;
+        }
+    }
+
     $effect(() => {
         nodes = enableAttachedNodes(
             untrack(() => nodes),
@@ -377,35 +485,6 @@
             title={mode.current === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         >
             {mode.current === 'dark' ? '☀️' : '🌙'}
-        </Button>
-        <Button
-            variant="icon"
-            class="nopan nodrag"
-            onclick={() => {
-                try {
-                    alert(JSON.stringify(compile(variables, nodes, edges)));
-                    store.clearErrors = true;
-                } catch (e: any) {
-                    nodes = nodes.map((node) => {
-                        return {
-                            ...node,
-                            data: {
-                                ...node.data,
-                                error_message: node.id === e.cause ? e.message : ''
-                            }
-                        };
-                    });
-                    fitView({
-                        padding: 0.2,
-                        maxZoom: 1.5,
-                        duration: 100,
-                        interpolate: 'smooth',
-                        nodes: [nodes.find((node) => node.id === e.cause)!]
-                    });
-                }
-            }}
-        >
-            compile to JSON
         </Button>
 </Panel>
 
