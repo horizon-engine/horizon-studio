@@ -173,8 +173,8 @@
         onnodedragstop={updateNodesHierarchy}
     >
         <Background bgColor="transparent" />
-        <MiniMap />
-        <EditorContent {nodes} {edges} />
+        <MiniMap class="editor-chrome" />
+        <EditorContent bind:nodes bind:edges />
     </SvelteFlow>
 </div>
 </SvelteFlowProvider>

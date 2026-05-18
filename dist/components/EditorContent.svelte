@@ -31,6 +31,14 @@
     import { autoLayoutNodes } from '../auto_layout';
     import { mode, toggleMode } from 'mode-watcher';
 
+    let {
+        nodes = $bindable<Node[]>([]),
+        edges = $bindable<Edge[]>([])
+    }: {
+        nodes?: Node[];
+        edges?: Edge[];
+    } = $props();
+
     const { screenToFlowPosition, deleteElements, fitView } = useSvelteFlow();
     const updateNodeInternals = useUpdateNodeInternals();
 
@@ -39,17 +47,6 @@
     let showVariablePanel = $state(false);
     let variablePanelPosition = $state({ x: 0, y: 0 });
     let variables = $state<Variable[]>([]);
-
-    let nodes = $state.raw<Node[]>([
-        {
-            id: 'start_node',
-            type: 'start_node',
-            position: { x: 76, y: 62 },
-            data: { error_message: '' },
-            deletable: false
-        }
-    ]);
-    let edges = $state.raw<Edge[]>([]);
 
     let selected_nodes = $derived(
         nodes.filter((node) => node.selected && node.type !== 'start_node')
@@ -335,7 +332,7 @@
     });
 </script>
 
-<Panel position="top-left" class="nopan nodrag !m-4 flex flex-row gap-2">
+<Panel position="top-left" class="nopan nodrag editor-chrome !m-4 flex flex-row gap-2">
         <Button
             variant="menu"
             class="nopan nodrag"
@@ -378,7 +375,7 @@
         </Button>
 </Panel>
 
-<Panel position="top-right" class="nopan nodrag !m-4 flex gap-2">
+<Panel position="top-right" class="nopan nodrag editor-chrome !m-4 flex gap-2">
         <Button
             variant="icon"
             class="nopan nodrag"
