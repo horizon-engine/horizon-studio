@@ -38,6 +38,10 @@
     let editorContent: EditorContent | null = null;
 
     export function compileToJson() {
+        if (!editorContent) {
+            console.warn('[HorizonEditor] compileToJson called before EditorContent ready');
+        }
+
         return editorContent?.compileToJson() ?? {
             ok: false,
             error: {
