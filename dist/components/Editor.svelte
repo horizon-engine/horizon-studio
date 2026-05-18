@@ -150,6 +150,14 @@
             }
         }
     };
+
+    const onnodeschange = () => {
+        nodes = [...nodes];
+    };
+
+    const onedgeschange = () => {
+        edges = [...edges];
+    };
 </script>
 
 <SvelteFlowProvider>
@@ -173,6 +181,8 @@
         {ondragover}
         {ondrop}
         {ondelete}
+        {onnodeschange}
+        {onedgeschange}
         onnodedragstop={updateNodesHierarchy}
     >
         <Background bgColor="transparent" />
