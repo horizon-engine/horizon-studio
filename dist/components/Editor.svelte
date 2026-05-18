@@ -150,11 +150,11 @@
 </script>
 
 <SvelteFlowProvider>
-<div class="h-full w-screen">
+<div class="h-full w-full">
     <SvelteFlow
         colorMode={mode.current}
-        class="h-full w-screen"
-        style="background-color: var(--new-color-primary-bg) !important;"
+        class="h-full w-full"
+        style="background-color: var(--new-color-primary-bg);"
         bind:nodes
         bind:edges
         {nodeTypes}

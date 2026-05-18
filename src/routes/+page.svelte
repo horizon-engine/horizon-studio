@@ -2,6 +2,5 @@
   import Editor from '$lib/components/Editor.svelte';
 </script>
 
-<div class="h-screen w-screen">
-  <Editor />
-</div>
+
+<Editor />
