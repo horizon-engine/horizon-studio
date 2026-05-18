@@ -152,10 +152,12 @@
     };
 
     const onnodeschange = () => {
+        console.log('[HorizonEditor] nodes change:', nodes.length);
         nodes = [...nodes];
     };
 
     const onedgeschange = () => {
+        console.log('[HorizonEditor] edges change:', edges.length);
         edges = [...edges];
     };
 </script>
@@ -181,8 +183,8 @@
         {ondragover}
         {ondrop}
         {ondelete}
-        {onnodeschange}
-        {onedgeschange}
+        on:nodeschange={onnodeschange}
+        on:edgeschange={onedgeschange}
         onnodedragstop={updateNodesHierarchy}
     >
         <Background bgColor="transparent" />
