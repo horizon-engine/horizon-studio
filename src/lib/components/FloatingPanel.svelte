@@ -10,10 +10,19 @@
 		open: boolean;
 		children?: Snippet;
 		position: { x: number; y: number };
-		[key: string]: any;
+		class?: string;
+		[key: string]: unknown;
 	}
 
-	let { id, title, open = $bindable(), children, position, ...restProps }: Props = $props();
+	let {
+		id,
+		title,
+		open = $bindable(),
+		children,
+		position,
+		class: panelClass = '',
+		...restProps
+	}: Props = $props();
 
 	const service = useMachine(floatingPanel.machine, {
 		id,
@@ -35,7 +44,11 @@
 	});
 </script>
 
-<div {...api.getPositionerProps()} {...restProps}>
+<div
+	{...api.getPositionerProps()}
+	{...restProps}
+	class={['editor-floating-panel', panelClass].filter(Boolean).join(' ')}
+>
 	<div
 		{...contentProps}
 		class="flex flex-col overflow-hidden rounded-lg border border-border-medium bg-background shadow-2xl"
