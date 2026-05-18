@@ -80,7 +80,7 @@
 <div
 	class="{color} {selected
 		? 'is-selected'
-		: ''} relative flex h-full min-h-32 w-full min-w-64 flex-col overflow-hidden rounded-md border px-3 py-2 outline-offset-2 backdrop-blur-[1px] [.is-selected]:outline-2"
+		: ''} relative flex h-full min-h-24 sm:min-h-32 w-full min-w-48 sm:min-w-56 md:min-w-64 flex-col overflow-hidden rounded-md border px-2 sm:px-3 py-1 sm:py-2 outline-offset-2 backdrop-blur-[1px] [.is-selected]:outline-2"
 	role="button"
 	tabindex="0"
 	{ondblclick}
@@ -107,6 +107,14 @@
 </div>
 
 <style>
+	/* Responsive wrapper for small screens */
+	@media (max-width: 640px) {
+		:global(.nopan) {
+			scale: 0.85;
+			transform-origin: top right;
+		}
+	}
+
 	.pink {
 		background-color: rgba(252, 206, 232, 0.5);
 		border-color: rgba(254, 165, 213, 0.5);

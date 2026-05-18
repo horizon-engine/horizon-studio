@@ -3,8 +3,7 @@
     import type { Variable } from '$lib/types';
     import { nanoid } from 'nanoid';
     import {
-        MiniMap,
-        Background,
+        Panel,
         type Node,
         type Rect,
         useSvelteFlow,
@@ -336,11 +335,10 @@
     });
 </script>
 
-<div class="flex h-screen w-screen flex-row bg-background">
-    <MiniMap />
-    <div class="absolute top-0 left-0 m-8 flex flex-row gap-2">
+<Panel position="top-left" class="nopan nodrag !m-4 flex flex-row gap-2">
         <Button
             variant="menu"
+            class="nopan nodrag"
             selected={showPanel}
             onclick={() => {
                 panelPosition = {
@@ -361,6 +359,7 @@
         </Button>
         <Button
             variant="menu"
+            class="nopan nodrag"
             selected={showVariablePanel}
             onclick={() => {
                 variablePanelPosition = {
@@ -377,10 +376,12 @@
             </svg>
             Add Variable
         </Button>
-    </div>
-    <div class="absolute top-0 right-0 m-8 flex gap-2">
+</Panel>
+
+<Panel position="top-right" class="nopan nodrag !m-4 flex gap-2">
         <Button
             variant="icon"
+            class="nopan nodrag"
             onclick={toggleMode}
             title={mode.current === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         >
@@ -388,6 +389,7 @@
         </Button>
         <Button
             variant="icon"
+            class="nopan nodrag"
             onclick={() => {
                 try {
                     alert(JSON.stringify(compile(variables, nodes, edges)));
@@ -414,8 +416,7 @@
         >
             compile to JSON
         </Button>
-    </div>
-</div>
+</Panel>
 
 <FloatingPanel
     id="floating-node-library"

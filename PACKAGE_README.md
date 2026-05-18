@@ -174,16 +174,19 @@ Create a custom node by extending the base node structure:
 
 ### Styling
 
-The package uses Tailwind CSS for styling. Include it in your project's `tailwind.config.js`:
+Import the pre-built stylesheet once in your app layout:
 
-```js
-export default {
-  content: [
-    './src/**/*.{svelte,js,ts}',
-    './node_modules/@horizonstudio/editor/**/*.{svelte,js,ts}'
-  ],
-  // your other config...
-};
+```css
+@import '@horizonstudio/editor/styles.css';
+```
+
+All Tailwind utilities and theme tokens used by the editor are compiled into that file when you run `pnpm run build` in this package.
+
+**Monorepo workflow (recommended):** from the repo root, use the pnpm workspace (`workspace:*`). After changing styles or components in horizon-studio:
+
+```bash
+pnpm --filter @horizonstudio/editor build
+# restart or refresh interface-engine dev server — no reinstall needed
 ```
 
 ## API Reference

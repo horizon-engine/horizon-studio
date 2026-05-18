@@ -1,0 +1,254 @@
+/* Responsive styles for Node Editor */
+
+/* Base responsive container */
+.editor-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main flow canvas */
+.svelte-flow {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background-color: red !important;
+}
+
+/* Responsive node sizing */
+.node-group,
+.node-postit {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Mobile devices (< 640px) */
+@media (max-width: 639px) {
+  .node-group,
+  .node-postit {
+    min-width: 160px !important;
+    min-height: 96px !important;
+  }
+
+  .node-wrapper {
+    padding: 6px !important;
+  }
+
+  .node-title {
+    font-size: 0.75rem;
+    padding: 4px 8px !important;
+  }
+
+  .toolbar {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .toolbar button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .floating-panel {
+    max-height: 60vh;
+    max-width: 90vw;
+  }
+
+  .mini-map {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
+/* Tablet devices (640px - 1024px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .node-group,
+  .node-postit {
+    min-width: 224px !important;
+    min-height: 128px !important;
+  }
+
+  .node-wrapper {
+    padding: 8px !important;
+  }
+
+  .node-title {
+    font-size: 0.875rem;
+    padding: 6px 12px !important;
+  }
+
+  .toolbar {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .toolbar button {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+  }
+
+  .floating-panel {
+    max-height: 70vh;
+    max-width: 95vw;
+  }
+
+  .mini-map {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+/* Desktop devices (>= 1024px) */
+@media (min-width: 1024px) {
+  .node-group,
+  .node-postit {
+    min-width: 256px !important;
+    min-height: 128px !important;
+  }
+
+  .node-wrapper {
+    padding: 8px !important;
+  }
+
+  .node-title {
+    font-size: 1rem;
+    padding: 8px 12px !important;
+  }
+
+  .toolbar {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .toolbar button {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+
+  .floating-panel {
+    max-height: 80vh;
+    max-width: 98vw;
+  }
+
+  .mini-map {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 639px) {
+  .node-label {
+    font-size: 0.625rem;
+  }
+
+  .handle {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .node-label {
+    font-size: 0.75rem;
+  }
+
+  .handle {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .node-label {
+    font-size: 0.875rem;
+  }
+
+  .handle {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Flexible flex containers */
+.flex-responsive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(4px, 2vw, 16px);
+}
+
+/* Responsive padding */
+.p-responsive {
+  padding: clamp(4px, 2vw, 16px);
+}
+
+/* Responsive gap */
+.gap-responsive {
+  gap: clamp(4px, 1.5vw, 12px);
+}
+
+/* Touch-friendly sizing for mobile */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .handle {
+    min-width: 12px !important;
+    min-height: 12px !important;
+  }
+}
+
+/* Prevent overflow */
+.editor-container {
+  overflow: hidden;
+}
+
+.svelte-flow-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: red !important;
+}
+
+/* Responsive zoom levels */
+@media (max-width: 639px) {
+  .svelte-flow {
+    --min-zoom: 0.2;
+    --max-zoom: 3;
+    background-color: red !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .svelte-flow {
+    --min-zoom: 0.3;
+    --max-zoom: 4;
+    background-color: red !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .svelte-flow {
+    --min-zoom: 0.3;
+    --max-zoom: 4;
+    background-color: red !important;
+  }
+}
+
+/* Responsive MiniMap */
+@media (max-width: 1023px) {
+  .minimap-container {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .minimap-container {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+}

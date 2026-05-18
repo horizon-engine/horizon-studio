@@ -157,7 +157,7 @@
             <Info class="mt-0.5 h-3 w-3 text-text-secondary" />
         </button>
     </div>
-	<div class="nodrag relative h-full w-full bg-background p-2">
+	<div class="nodrag relative h-full w-full bg-background p-1 sm:p-2">
 		<div class="cursor-auto">
 			{@render children()}
 		</div>

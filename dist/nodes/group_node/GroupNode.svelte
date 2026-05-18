@@ -90,7 +90,7 @@
 <div
 	class="{color} {selected
 		? 'is-selected'
-		: ''} relative h-full min-h-32 w-full min-w-64 overflow-hidden rounded-md border outline-offset-2 backdrop-blur-[1px] [.is-selected]:outline-2"
+		: ''} relative h-full min-h-24 sm:min-h-32 w-full min-w-48 sm:min-w-56 md:min-w-64 overflow-hidden rounded-md border outline-offset-2 backdrop-blur-[1px] [.is-selected]:outline-2"
 >
 	<div
 		class="{color} flex h-7 w-full items-center justify-center border-b px-2"
@@ -127,6 +127,14 @@
 </div>
 
 <style>
+	/* Responsive wrapper for small screens */
+	@media (max-width: 640px) {
+		:global(.nopan) {
+			scale: 0.85;
+			transform-origin: top right;
+		}
+	}
+
 	.pink {
 		background-color: rgba(252, 206, 232, 0.5);
 		border-color: rgba(254, 165, 213, 0.5);

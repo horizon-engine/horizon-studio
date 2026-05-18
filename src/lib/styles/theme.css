@@ -1,0 +1,92 @@
+@theme {
+	--color-primary: #6b21a8;
+	--color-primary-muted: #a855f7;
+	--color-primary-dark: #4c1d95;
+
+	--color-secondary: #db2777;
+	--color-secondary-muted: #f472b6;
+	--color-secondary-dark: #9f1239;
+
+	--color-accent: #06b6d4;
+
+	--color-background: #ffffff;
+	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-surface: #f9fafb;
+	--color-surface-elevated: #ffffff;
+
+	--color-text-primary: #111827;
+	--color-text-secondary: #6b7280;
+	--color-text-muted: #9ca3af;
+	--color-text-inverted: #f9fafb;
+
+	--color-border-subtle: #f3f4f6;
+	--color-border-medium: #e5e7eb;
+	--color-border-strong: #d1d5db;
+
+	--color-success: #10b981;
+	--color-success-muted: #d1fae5;
+	--color-warning: #f59e0b;
+	--color-warning-muted: #fef3c7;
+	--color-error: #ef4444;
+	--color-error-muted: #fee2e2;
+	--color-info: #3b82f6;
+	--color-info-muted: #dbeafe;
+
+	--new-color-node-bg: #e2e8f0;
+	--new-color-primary-bg: #f0f4f8;
+	--new-color-primary: #e2e8f0;
+	--new-color-primary-dark: #cbd5e1;
+	--new-color-btn-bg-selected: rgba(59, 130, 246, 0.15);
+	--new-color-btn-hover: rgba(0, 0, 0, 0.05);
+	--new-color-text-btn: #2563eb;
+	--new-color-text-selected: #2563eb;
+	--new-color-text-hover: #1e293b;
+	--new-color-btn-bg: #dbeafe;
+}
+
+.dark {
+	--color-primary: #a855f7;
+	--color-primary-muted: #c084fc;
+	--color-primary-dark: #7c3aed;
+
+	--color-secondary: #ec4899;
+	--color-secondary-muted: #f472b6;
+	--color-secondary-dark: #db2777;
+
+	--color-accent: #22d3ee;
+
+	--color-background: #0f172a;
+	--color-overlay: rgba(0, 0, 0, 0.75);
+	--color-surface: #1e293b;
+	--color-surface-elevated: #334155;
+
+	--color-text-primary: #f1f5f9;
+	--color-text-secondary: #cbd5e1;
+	--color-text-muted: #94a3b8;
+	--color-text-inverted: #0f172a;
+
+	--color-border-subtle: #1e293b;
+	--color-border-medium: #334155;
+	--color-border-strong: #475569;
+
+	--color-success: #10b981;
+	--color-success-muted: #064e3b;
+	--color-warning: #f59e0b;
+	--color-warning-muted: #78350f;
+	--color-error: #ef4444;
+	--color-error-muted: #7f1d1d;
+	--color-info: #3b82f6;
+	--color-info-muted: #1e3a8a;
+
+	--new-color-node-bg: #201d30;
+	--new-color-node-border: #342e53;
+	--new-color-primary-bg: #1e1c29;
+	--new-color-primary: #1a1a2e;
+	--new-color-primary-dark: #0d0d17;
+	--new-color-btn-bg-selected: rgba(59, 130, 246, 0.2);
+	--new-color-btn-hover: rgba(255, 255, 255, 0.05);
+	--new-color-text-btn: #3b82f6;
+	--new-color-text-selected: #3b82f6;
+	--new-color-text-hover: rgba(229, 231, 235, 1);
+	--new-color-btn-bg: #1d2b46;
+}

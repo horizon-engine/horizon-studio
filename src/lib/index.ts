@@ -30,4 +30,4 @@ export * from './node_utils';
 export * from './node_metadata';
 export * from './compile';
 export * from './auto_layout';
-export { state, handleValidTypes } from './state.svelte';
+export { store as state, store, handleValidTypes } from './state.svelte';

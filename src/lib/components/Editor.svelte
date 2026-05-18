@@ -1,13 +1,14 @@
 <script lang="ts">
     import {
         Background,
+        MiniMap,
         SvelteFlow,
+        SvelteFlowProvider,
         type Node,
         type Edge,
         type Rect,
         useUpdateNodeInternals
     } from '@xyflow/svelte';
-    import '@xyflow/svelte/dist/style.css';
     import { nodeTypes } from '$lib/node_types';
     import { mode } from 'mode-watcher';
     import { useDnD } from '$lib/providers/DnDProvider.svelte';
@@ -148,27 +149,32 @@
     };
 </script>
 
-<SvelteFlow
-    colorMode={mode.current}
-    class="h-full w-screen"
-    style="background-color: var(--new-color-primary-bg);"
-    bind:nodes
-    bind:edges
-    {nodeTypes}
-    proOptions={{ hideAttribution: true }}
-    defaultEdgeOptions={{ animated: true }}
-    minZoom={0.3}
-    maxZoom={4}
-    fitViewOptions={{
-        padding: 0.2,
-        maxZoom: 1.5
-    }}
-    fitView
-    {ondragover}
-    {ondrop}
-    {ondelete}
-    onnodedragstop={updateNodesHierarchy}
->
-    <Background bgColor="transparent" />
-    <EditorContent {nodes} {edges} />
-</SvelteFlow>
+<SvelteFlowProvider>
+<div class="h-full w-screen">
+    <SvelteFlow
+        colorMode={mode.current}
+        class="h-full w-screen"
+        style="background-color: var(--new-color-primary-bg) !important;"
+        bind:nodes
+        bind:edges
+        {nodeTypes}
+        proOptions={{ hideAttribution: true }}
+        defaultEdgeOptions={{ animated: true }}
+        minZoom={0.3}
+        maxZoom={4}
+        fitViewOptions={{
+            padding: 0.2,
+            maxZoom: 1.5
+        }}
+        fitView
+        {ondragover}
+        {ondrop}
+        {ondelete}
+        onnodedragstop={updateNodesHierarchy}
+    >
+        <Background bgColor="transparent" />
+        <MiniMap />
+        <EditorContent {nodes} {edges} />
+    </SvelteFlow>
+</div>
+</SvelteFlowProvider>

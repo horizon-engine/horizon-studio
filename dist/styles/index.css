@@ -1,0 +1,3 @@
+/* Legacy entry – use package.css / dist/styles.css for the full stylesheet */
+@import '@xyflow/svelte/dist/style.css';
+@import './editor-responsive.css';
