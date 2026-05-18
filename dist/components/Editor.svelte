@@ -20,7 +20,7 @@
 
     setContext('editor-store', store);
 
-    let nodes = $state.raw<Node[]>([
+    const defaultNodes: Node[] = [
         {
             id: 'start_node',
             type: 'start_node',
@@ -28,8 +28,11 @@
             data: { error_message: '' },
             deletable: false
         }
-    ]);
-    let edges = $state.raw<Edge[]>([]);
+    ];
+    const defaultEdges: Edge[] = [];
+
+    let { nodes = $bindable(defaultNodes), edges = $bindable(defaultEdges) } =
+        $props<{ nodes?: Node[]; edges?: Edge[] }>();
 
     const dndData = useDnD();
 
