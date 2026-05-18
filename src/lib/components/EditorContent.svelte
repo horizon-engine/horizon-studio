@@ -34,22 +34,13 @@
     const { screenToFlowPosition, deleteElements, fitView } = useSvelteFlow();
     const updateNodeInternals = useUpdateNodeInternals();
 
+    let { nodes = $bindable(), edges = $bindable() } = $props<{ nodes: Node[]; edges: Edge[] }>();
+
     let showPanel = $state(false);
     let panelPosition = $state({ x: 0, y: 0 });
     let showVariablePanel = $state(false);
     let variablePanelPosition = $state({ x: 0, y: 0 });
     let variables = $state<Variable[]>([]);
-
-    let nodes = $state.raw<Node[]>([
-        {
-            id: 'start_node',
-            type: 'start_node',
-            position: { x: 76, y: 62 },
-            data: { error_message: '' },
-            deletable: false
-        }
-    ]);
-    let edges = $state.raw<Edge[]>([]);
 
     let selected_nodes = $derived(
         nodes.filter((node) => node.selected && node.type !== 'start_node')

@@ -21,7 +21,7 @@
 
 .floating-panel {
   position: absolute;
-  z-index: 40;
+  z-index: 99999;
 }
 
 /* Responsive node sizing */

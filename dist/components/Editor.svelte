@@ -174,7 +174,7 @@
     >
         <Background bgColor="transparent" />
         <MiniMap />
-        <EditorContent {nodes} {edges} />
+        <EditorContent bind:nodes bind:edges />
     </SvelteFlow>
 </div>
 </SvelteFlowProvider>
