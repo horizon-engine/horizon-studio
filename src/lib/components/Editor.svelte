@@ -150,7 +150,7 @@
 </script>
 
 <SvelteFlowProvider>
-<div class="h-full w-full">
+<div class="editor-container h-full w-full">
     <SvelteFlow
         colorMode={mode.current}
         class="h-full w-full"
@@ -173,8 +173,8 @@
         onnodedragstop={updateNodesHierarchy}
     >
         <Background bgColor="transparent" />
-        <MiniMap class="editor-chrome" />
-        <EditorContent bind:nodes bind:edges />
+        <MiniMap />
+        <EditorContent {nodes} {edges} />
     </SvelteFlow>
 </div>
 </SvelteFlowProvider>

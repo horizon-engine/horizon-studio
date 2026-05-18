@@ -16,7 +16,7 @@
 </script>
 
 {#if dialog}
-	<div class="fixed inset-0 z-[1200] flex items-center justify-center bg-overlay backdrop-blur-sm">
+	<div class="fixed inset-0 z-50 flex items-center justify-center bg-overlay backdrop-blur-sm">
 		<div class="mx-4 w-full max-w-md rounded-lg bg-background p-6 shadow-xl">
 			{#if dialog.title}
 				<h2 class="mb-4 text-xl font-semibold text-text-primary">

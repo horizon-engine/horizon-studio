@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import './lib/styles/theme.css';
+@import '@xyflow/svelte/dist/style.css';
+@import './lib/styles/editor-responsive.css';
 @source './lib/**/*.{svelte,ts,js}';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
-/* @import '@xyflow/svelte/dist/style.css';
-@import './lib/styles/editor-responsive.css'; */

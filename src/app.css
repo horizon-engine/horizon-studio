@@ -1,1 +1,19 @@
 @import './package.css';
+
+html,
+body,
+body > div {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+.editor-container,
+.svelte-flow,
+.svelte-flow-wrapper {
+	width: 100%;
+	height: 100%;
+}

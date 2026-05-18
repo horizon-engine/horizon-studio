@@ -8,8 +8,7 @@ interface Props {
         x: number;
         y: number;
     };
-    class?: string;
-    [key: string]: unknown;
+    [key: string]: any;
 }
 declare const FloatingPanel: import("svelte").Component<Props, {}, "open">;
 type FloatingPanel = ReturnType<typeof FloatingPanel>;
