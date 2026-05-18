@@ -35,7 +35,7 @@
 	});
 </script>
 
-<div {...api.getPositionerProps()} {...restProps}>
+<div {...api.getPositionerProps()} {...restProps} class="floating-panel">
 	<div
 		{...contentProps}
 		class="flex flex-col overflow-hidden rounded-lg border border-border-medium bg-background shadow-2xl"

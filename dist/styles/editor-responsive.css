@@ -19,6 +19,11 @@
   z-index: 20;
 }
 
+.floating-panel {
+  position: absolute;
+  z-index: 40;
+}
+
 /* Responsive node sizing */
 .node-group,
 .node-postit {
